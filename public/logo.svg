@@ -1,0 +1,18 @@
+<svg width="400" height="100" viewBox="0 0 400 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g id="Icon">
+    <circle cx="50" cy="50" r="42" stroke="#8CFF32" stroke-width="8"/>
+    <circle cx="50" cy="50" r="28" stroke="#8CFF32" stroke-width="6"/>
+    
+    <path d="M15 55H28L35 40L42 60L52 30L62 70L75 25" 
+          stroke="#F2E394" 
+          stroke-width="5" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+  </g>
+
+  <text x="105" y="72" 
+        fill="white" 
+        style="font-family: Calibri, sans-serif; font-weight: 800; font-size: 64px; letter-spacing: -2px;">
+    CoinPush
+  </text>
+</svg>
