@@ -29,7 +29,7 @@ export const TrendingCoinsFallback = () => {
             ),
         },
         {
-            header: "24h Change",
+            header: "24 hour Change",
             cell: () => (
                 <div className="price-change">
                     <div className="change-icon skeleton" />
@@ -77,7 +77,7 @@ export const CategoriesFallback = () => {
             ),
         },
         {
-            header: "24h Change",
+            header: "24 hour Change",
             cellClassName: "change-header-cell",
             cell: () => (
                 <div className="change-cell">
@@ -92,7 +92,7 @@ export const CategoriesFallback = () => {
             cell: () => <div className="value-skeleton-lg skeleton" />,
         },
         {
-            header: "24h Volume",
+            header: "24 hour Volume",
             cellClassName: "volume-cell",
             cell: () => <div className="value-skeleton-md skeleton" />,
         },
