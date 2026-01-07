@@ -11,7 +11,7 @@ const CoinOverview = async () => {
         <div id="coin-overview">
             <div className="header pt-2">
                 <Image
-                    src={coin .image.large}
+                    src={coin.image.large}
                     alt={coin.name}
                     width={56}
                     height={56}
@@ -21,13 +21,10 @@ const CoinOverview = async () => {
                         {coin.name} / {coin.symbol.toUpperCase()}
                     </p>
                     <h1>
-                        {formatCurrency(
-                            coin.market_data.current_price.inr,
-                            "INR",
-                            {
-                                withSymbol: true,
-                            }
-                        )}
+                        {formatCurrency({
+                            value: coin.market_data.current_price.inr,
+                            currency: "INR",
+                        })}
                     </h1>
                 </div>
             </div>

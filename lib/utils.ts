@@ -5,26 +5,48 @@ export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
 
-type Currency = "USD" | "INR";
+type CurrencyCode = "USD" | "INR";
 
-export function formatCurrency(
-    value: number,
-    currency: Currency,
-    options?: {
-        withSymbol?: boolean;
-        maximumFractionDigits?: number;
+interface FormatCurrencyOptions {
+    value: number | null | undefined;
+    currency?: CurrencyCode;
+    digits?: number;
+    showSymbol?: boolean;
+}
+
+export function formatCurrency({
+    value,
+    currency = "USD",
+    digits = 2,
+    showSymbol = true,
+}: FormatCurrencyOptions): string {
+    if (value == null || Number.isNaN(value)) {
+        if (!showSymbol) return "0.00";
+        return currency === "INR" ? "₹0.00" : "$0.00";
     }
-): string {
-    const { withSymbol = false, maximumFractionDigits = 2 } = options || {};
 
-    const formatter = new Intl.NumberFormat(
-        currency === "INR" ? "en-IN" : "en-US",
-        {
-            style: withSymbol ? "currency" : "decimal",
-            currency,
-            maximumFractionDigits,
-        }
+    const locale = currency === "INR" ? "en-IN" : "en-US";
+
+    return value.toLocaleString(
+        locale,
+        showSymbol
+            ? {
+                  style: "currency",
+                  currency,
+                  minimumFractionDigits: digits,
+                  maximumFractionDigits: digits,
+              }
+            : {
+                  minimumFractionDigits: digits,
+                  maximumFractionDigits: digits,
+              }
     );
+}
 
-    return formatter.format(value);
+export function formatPercentage(change: number | null | undefined): string {
+    if (change === null || change === undefined || isNaN(change)) {
+        return "0.0%";
+    }
+    const formattedChange = change.toFixed(1);
+    return `${formattedChange}%`;
 }

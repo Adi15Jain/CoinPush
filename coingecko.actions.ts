@@ -15,7 +15,7 @@ export async function fetcher<T>(
 ): Promise<T> {
     const url = qs.stringifyUrl(
         {
-            url: `${BASE_URL}${endpoint}`,
+            url: `${BASE_URL}/${endpoint}`,
             query: params,
         },
         { skipEmptyString: true, skipNull: true }
@@ -23,7 +23,7 @@ export async function fetcher<T>(
 
     const response = await fetch(url, {
         headers: {
-            // "x-cg-pro-api-key": API_KEY,
+            "x-cg-api-key": API_KEY,
             "Content-Type": "application/json",
         } as Record<string, string>,
         next: { revalidate },
@@ -42,4 +42,41 @@ export async function fetcher<T>(
     }
 
     return response.json();
+}
+
+export async function getPools(
+    id: string,
+    network?: string | null,
+    contractAddress?: string | null
+): Promise<PoolData> {
+    const fallback: PoolData = {
+        id: "",
+        address: "",
+        name: "",
+        network: "",
+    };
+
+    if (network && contractAddress) {
+        try {
+            const poolData = await fetcher<{ data: PoolData[] }>(
+                `/onchain/networks/${network}/tokens/${contractAddress}/pools`
+            );
+
+            return poolData.data?.[0] ?? fallback;
+        } catch (error) {
+            console.log(error);
+            return fallback;
+        }
+    }
+
+    try {
+        const poolData = await fetcher<{ data: PoolData[] }>(
+            "/onchain/search/pools",
+            { query: id }
+        );
+
+        return poolData.data?.[0] ?? fallback;
+    } catch {
+        return fallback;
+    }
 }
