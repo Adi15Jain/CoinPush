@@ -211,7 +211,7 @@
         }
 
         .button-group {
-            @apply flex gap-1 xl:gap-2 items-center;
+            @apply flex-1 gap-1 xl:gap-2 items-center;
         }
 
         .config-button {
