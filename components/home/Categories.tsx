@@ -39,14 +39,14 @@ const Categories = async () => {
                             isPositive ? "text-green-500" : "text-red-500"
                         )}
                     >
-                        <div className="flex items-center gap-2">
+                        <p className="flex items-center gap-2">
                             {category.market_cap_change_24h.toFixed(2)}%
                             {isPositive ? (
                                 <TrendingUp width={16} height={16} />
                             ) : (
                                 <TrendingDown width={16} height={16} />
                             )}
-                        </div>
+                        </p>
                     </span>
                 );
             },
