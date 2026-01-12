@@ -14,14 +14,7 @@ import {
     IChartApi,
     ISeriesApi,
 } from "lightweight-charts";
-import {
-    startTransition,
-    useEffect,
-    useRef,
-    useState,
-    useTransition,
-} from "react";
-import { start } from "repl";
+import { useEffect, useRef, useState, useTransition } from "react";
 
 const CandlestickChart = ({
     children,
@@ -30,11 +23,10 @@ const CandlestickChart = ({
     height = 360,
     initialPeriod = "daily",
 }: CandlestickChartProps) => {
-    const [loading, setLoading] = useState(false);
     const [period, setPeriod] = useState(initialPeriod);
 
     const [ohlcData, setOhlcData] = useState<OHLCData[]>(data ?? []);
-    const [isPending, setTransition] = useTransition();
+    const [isPending, startTransition] = useTransition();
 
     const fetchOHLCData = async (selectedPeriod: Period) => {
         try {
@@ -42,7 +34,7 @@ const CandlestickChart = ({
             const newData = await fetcher<OHLCData[]>(
                 `/coins/${coinId}/ohlc`,
                 {
-                    vs_currency: "inr",
+                    vs_currency: "usd",
                     days: config.days,
                 },
                 300
@@ -97,7 +89,7 @@ const CandlestickChart = ({
             chartRef.current = null;
             candleSeriesRef.current = null;
         };
-    }, [height]);
+    }, [height, period, ohlcData]);
 
     useEffect(() => {
         if (!candleSeriesRef.current) return;
@@ -134,7 +126,7 @@ const CandlestickChart = ({
                                     : "config-button"
                             }
                             onClick={() => handlePeriodChange(value)}
-                            disabled={loading}
+                            disabled={isPending}
                         >
                             {label}
                         </button>
