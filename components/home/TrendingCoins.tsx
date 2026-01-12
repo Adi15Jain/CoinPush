@@ -40,7 +40,7 @@ const TrendingCoins = async () => {
             },
         },
         {
-            header: "24 hour Change",
+            header: "24h Change",
             cellClassName: "change-cell",
             cell: (coin) => {
                 const item = coin.item;
@@ -54,7 +54,7 @@ const TrendingCoins = async () => {
                             isTrendingUp ? "text-green-500" : "text-red-500"
                         )}
                     >
-                        <p className="flex items-center">
+                        <p className="flex items-center gap-2">
                             {formatPercentage(
                                 item.data.price_change_percentage_24h.usd
                             )}
