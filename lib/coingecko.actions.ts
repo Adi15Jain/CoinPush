@@ -44,6 +44,48 @@ export async function fetcher<T>(
     return response.json();
 }
 
+export async function searchCoins(
+    query: string,
+    limit = 10
+): Promise<SearchCoin[]> {
+    if (!query.trim()) return [];
+
+    const searchResponse = await fetcher<{
+        coins: SearchCoin[];
+    }>("/search", {
+        query,
+    });
+
+    const coins = searchResponse.coins.slice(0, limit);
+
+    if (coins.length === 0) return [];
+
+    const ids = coins.map((coin) => coin.id).join(",");
+
+    const marketData = await fetcher<CoinMarketData[]>(
+        "/coins/markets",
+        {
+            vs_currency: "usd",
+            ids,
+            price_change_percentage: "24h",
+        },
+        60
+    );
+
+    return coins.map((coin) => {
+        const market = marketData.find((m) => m.id === coin.id);
+
+        return {
+            ...coin,
+            data: {
+                price: market?.current_price,
+                price_change_percentage_24h:
+                    market?.price_change_percentage_24h ?? 0,
+            },
+        };
+    });
+}
+
 export async function getPools(
     id: string,
     network?: string | null,
