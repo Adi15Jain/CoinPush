@@ -52,7 +52,7 @@ const Coins = async ({ searchParams }: NextPageProps) => {
         {
             header: "Price",
             cellClassName: "price-cell",
-            cell: (coin) => formatCurrency({ value: coin.current_price }),
+            cell: (coin) => formatCurrency(coin.current_price),
         },
         {
             header: "24h Change",
@@ -76,7 +76,7 @@ const Coins = async ({ searchParams }: NextPageProps) => {
         {
             header: "Market Cap",
             cellClassName: "market-cap-cell",
-            cell: (coin) => formatCurrency({ value: coin.market_cap }),
+            cell: (coin) => formatCurrency(coin.market_cap),
         },
     ];
 

@@ -44,10 +44,7 @@ const CoinOverview = async () => {
                             {coin.name} / {coin.symbol.toUpperCase()}
                         </p>
                         <h1>
-                            {formatCurrency({
-                                value: coin.market_data.current_price.inr,
-                                currency: "INR",
-                            })}
+                            {formatCurrency(coin.market_data.current_price.inr)}
                         </h1>
                     </div>
                 </div>
