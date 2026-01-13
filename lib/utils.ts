@@ -6,42 +6,28 @@ export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
 
-type CurrencyCode = "USD" | "INR";
-
-interface FormatCurrencyOptions {
-    value: number | null | undefined;
-    currency?: CurrencyCode;
-    digits?: number;
-    showSymbol?: boolean;
-}
-
-export function formatCurrency({
-    value,
-    currency = "USD",
-    digits = 2,
-    showSymbol = true,
-}: FormatCurrencyOptions): string {
-    if (value == null || Number.isNaN(value)) {
-        if (!showSymbol) return "0.00";
-        return currency === "INR" ? "₹0.00" : "$0.00";
+export function formatCurrency(
+    value: number | null | undefined,
+    digits?: number,
+    currency?: string,
+    showSymbol?: boolean
+) {
+    if (value === null || value === undefined || isNaN(value)) {
+        return showSymbol !== false ? "$0.00" : "0.00";
     }
 
-    const locale = currency === "INR" ? "en-IN" : "en-US";
-
-    return value.toLocaleString(
-        locale,
-        showSymbol
-            ? {
-                  style: "currency",
-                  currency,
-                  minimumFractionDigits: digits,
-                  maximumFractionDigits: digits,
-              }
-            : {
-                  minimumFractionDigits: digits,
-                  maximumFractionDigits: digits,
-              }
-    );
+    if (showSymbol === undefined || showSymbol === true) {
+        return value.toLocaleString(undefined, {
+            style: "currency",
+            currency: currency?.toUpperCase() || "USD",
+            minimumFractionDigits: digits ?? 2,
+            maximumFractionDigits: digits ?? 2,
+        });
+    }
+    return value.toLocaleString(undefined, {
+        minimumFractionDigits: digits ?? 2,
+        maximumFractionDigits: digits ?? 2,
+    });
 }
 
 export function formatPercentage(change: number | null | undefined): string {
