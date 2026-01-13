@@ -9,7 +9,6 @@ import { useState } from "react";
 import CoinHeader from "@/components/CoinHeader";
 
 const LiveDataWrapper = ({
-    children,
     coinId,
     poolId,
     coin,
