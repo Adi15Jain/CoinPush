@@ -8,26 +8,31 @@ export function cn(...inputs: ClassValue[]) {
 
 export function formatCurrency(
     value: number | null | undefined,
-    digits?: number,
-    currency?: string,
-    showSymbol?: boolean
-) {
-    if (value === null || value === undefined || isNaN(value)) {
-        return showSymbol !== false ? "$0.00" : "0.00";
+    digits = 2,
+    currency: "USD" | "INR" = "USD",
+    showSymbol = true
+): string {
+    if (value == null || Number.isNaN(value)) {
+        return showSymbol ? (currency === "INR" ? "₹0.00" : "$0.00") : "0.00";
     }
 
-    if (showSymbol === undefined || showSymbol === true) {
-        return value.toLocaleString(undefined, {
-            style: "currency",
-            currency: currency?.toUpperCase() || "USD",
-            minimumFractionDigits: digits ?? 2,
-            maximumFractionDigits: digits ?? 2,
-        });
-    }
-    return value.toLocaleString(undefined, {
-        minimumFractionDigits: digits ?? 2,
-        maximumFractionDigits: digits ?? 2,
-    });
+    const locale = currency === "INR" ? "en-IN" : "en-US";
+
+    return value.toLocaleString(
+        locale,
+        showSymbol
+            ? {
+                  style: "currency",
+                  currency,
+                  currencyDisplay: "narrowSymbol",
+                  minimumFractionDigits: digits,
+                  maximumFractionDigits: digits,
+              }
+            : {
+                  minimumFractionDigits: digits,
+                  maximumFractionDigits: digits,
+              }
+    );
 }
 
 export function formatPercentage(change: number | null | undefined): string {
