@@ -1,6 +1,6 @@
-CoinPush 🚀
+# CoinPush 🚀
 
-A modern cryptocurrency analytics platform built with Next.js, CoinGecko API, and real-time market insights.
+A modern cryptocurrency tracking and analytics platform built with Next.js, CoinGecko API, and real-time market insights.
 
 Getting Started
 
@@ -83,7 +83,7 @@ Client-side SWR with caching and race-condition handling
 
 Debounced search to prevent API rate-limit issues
 
-Modular component structure
+Modular, scalable component structure
 
 Strong typing using shared TypeScript interfaces
 
@@ -113,3 +113,13 @@ Frontend Developer | AI & ML Enthusiast
 Portfolio: https://adijain-portfolio.vercel.app
 
 GitHub: https://github.com/Adi15Jain
+
+Learn More
+
+Next.js Documentation
+
+Next.js App Router
+
+SWR Documentation
+
+CoinGecko API Documentation
