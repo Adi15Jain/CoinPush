@@ -89,21 +89,6 @@ const LiveDataWrapper = ({
                     <h4>Trend Overview</h4>
                 </CandlestickChart>
             </div>
-
-            <Separator className="divider" />
-
-            {tradeColumns && (
-                <div className="trades">
-                    <h4>Recent Trades</h4>
-
-                    <DataTable
-                        columns={tradeColumns}
-                        data={trades}
-                        rowKey={(_, index) => index}
-                        tableClassName="trades-table"
-                    />
-                </div>
-            )}
         </section>
     );
 };
