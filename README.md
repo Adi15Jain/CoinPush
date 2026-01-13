@@ -1,32 +1,115 @@
-## Getting Started
+CoinPush 🚀
 
-First, run the development server:
+A modern cryptocurrency analytics platform built with Next.js, CoinGecko API, and real-time market insights.
 
-```bash
+Getting Started
+
+First, install dependencies and run the development server:
+
+npm install
 npm run dev
+
 # or
+
 yarn dev
+
 # or
+
 pnpm dev
+
 # or
+
 bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open your browser and navigate to:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+http://localhost:3000
 
-## About Me
+Project Overview
 
-To learn more about Next.js, take a look at the following resources:
+CoinPush is a feature-rich cryptocurrency tracking and analytics application that provides real-time and historical market data with a clean, modern UI.
 
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Key Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+📊 Real-time and historical price data
 
-## Deploy on Vercel
+🕯️ Interactive candlestick charts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+🔍 Command palette search (Cmd + K / Ctrl + K)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🔁 Live price updates via WebSockets
+
+📈 Market metrics: market cap, volume, price changes
+
+🌗 Dark-themed, performance-optimized UI
+
+⌨️ Fully keyboard-accessible interface
+
+The application follows modern frontend best practices using:
+
+Next.js App Router
+
+Server Components + Client Components
+
+SWR (Stale-While-Revalidate) for data fetching
+
+shadcn/ui (cmdk) for command palette
+
+Tailwind CSS for styling
+
+CoinGecko REST & WebSocket APIs
+
+Tech Stack
+
+Framework: Next.js 14+
+
+Language: TypeScript
+
+Styling: Tailwind CSS
+
+UI Components: shadcn/ui, lucide-react
+
+Charts: lightweight-charts
+
+Data Fetching: SWR
+
+APIs: CoinGecko REST API & WebSocket feeds
+
+Architecture Highlights
+
+Server-side data fetching for SEO-friendly pages
+
+Client-side SWR with caching and race-condition handling
+
+Debounced search to prevent API rate-limit issues
+
+Modular component structure
+
+Strong typing using shared TypeScript interfaces
+
+Development Notes
+
+Coin search uses debounced SWR queries to avoid rate limits
+
+Search modal opens using Cmd + K / Ctrl + K
+
+Trending coins are shown when the search input is idle
+
+Currency formatting supports USD and INR
+
+Fully responsive layout with consistent design tokens
+
+About the Developer
+
+Adi Jain
+Frontend Developer | AI & ML Enthusiast
+
+🎓 B.Tech CSE (AI, ML, DL)
+
+💻 Strong focus on React, Next.js, UI/UX, and data-driven applications
+
+🧠 Interested in scalable systems, real-time apps, and clean architecture
+
+Portfolio: https://adijain-portfolio.vercel.app
+
+GitHub: https://github.com/Adi15Jain
