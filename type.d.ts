@@ -132,7 +132,7 @@ interface TopGainersLosersResponse {
     name: string;
     symbol: string;
     image: string;
-    usd: number;
+    inr: number;
     usd_24h_change: number;
     usd_24h_vol: number;
     market_cap_rank: number;
