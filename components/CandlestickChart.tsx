@@ -42,7 +42,7 @@ const CandlestickChart = ({
             const { days, interval } = PERIOD_CONFIG[selectedPeriod];
 
             const newData = await fetcher<OHLCData[]>(`/coins/${coinId}/ohlc`, {
-                vs_currency: "usd",
+                vs_currency: "inr",
                 days,
                 interval,
                 precision: "full",
@@ -75,7 +75,7 @@ const CandlestickChart = ({
         });
         const series = chart.addSeries(
             CandlestickSeries,
-            getCandlestickConfig()
+            getCandlestickConfig(),
         );
 
         const convertedToSeconds = ohlcData.map(
@@ -86,7 +86,7 @@ const CandlestickChart = ({
                     item[2],
                     item[3],
                     item[4],
-                ] as OHLCData
+                ] as OHLCData,
         );
 
         series.setData(convertOHLCData(convertedToSeconds));
@@ -120,7 +120,7 @@ const CandlestickChart = ({
                     item[2],
                     item[3],
                     item[4],
-                ] as OHLCData
+                ] as OHLCData,
         );
 
         let merged: OHLCData[];

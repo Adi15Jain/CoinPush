@@ -14,7 +14,7 @@ import {
 } from "./ui/select";
 
 const Converter = ({ symbol, icon, priceList }: ConverterProps) => {
-    const [currency, setCurrency] = useState("usd");
+    const [currency, setCurrency] = useState("inr");
     const [amount, setAmount] = useState("10");
 
     const convertedPrice =
@@ -57,7 +57,7 @@ const Converter = ({ symbol, icon, priceList }: ConverterProps) => {
                             convertedPrice,
                             2,
                             currency.toUpperCase() === "INR" ? "INR" : "USD",
-                            false
+                            false,
                         )}
                     </p>
 

@@ -85,6 +85,7 @@ interface TrendingCoin {
             price: number;
             price_change_percentage_24h: {
                 usd: number;
+                inr: number;
             };
         };
     };
@@ -110,7 +111,7 @@ interface ChartSectionProps {
         name: string;
         symbol: string;
         market_data: {
-            current_price: { usd: number };
+            current_price: { inr: number };
         };
     };
     coinOHLCData: OHLCData[];
@@ -138,7 +139,7 @@ interface TopGainersLosersResponse {
 }
 
 interface PriceData {
-    usd: number;
+    inr: number;
 }
 
 interface Trade {
@@ -150,7 +151,7 @@ interface Trade {
 }
 
 interface ExtendedPriceData {
-    usd: number;
+    inr: number;
     coin?: string;
     price?: number;
     change24h?: number;
@@ -198,23 +199,23 @@ interface CoinDetailsData {
     };
     market_data: {
         current_price: {
-            usd: number;
+            inr: number;
             [key: string]: number;
         };
         price_change_24h_in_currency: {
-            usd: number;
+            inr: number;
         };
         price_change_percentage_24h_in_currency: {
-            usd: number;
+            inr: number;
         };
         price_change_percentage_30d_in_currency: {
-            usd: number;
+            inr: number;
         };
         market_cap: {
-            usd: number;
+            inr: number;
         };
         total_volume: {
-            usd: number;
+            inr: number;
         };
     };
     market_cap_rank: number;

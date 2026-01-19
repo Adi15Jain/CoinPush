@@ -14,7 +14,7 @@ const CoinOverview = async () => {
             {
                 dex_pair_format: "symbol",
             },
-            300
+            300,
         );
         coinOHLCData = await fetcher<OHLCData[]>(
             `/coins/bitcoin/ohlc`,
@@ -22,7 +22,7 @@ const CoinOverview = async () => {
                 vs_currency: "inr",
                 days: 7,
             },
-            300
+            300,
         );
     } catch (error) {
         console.error("Error fetching coin overview:", error);

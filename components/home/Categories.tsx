@@ -36,7 +36,7 @@ const Categories = async () => {
                 return (
                     <span
                         className={cn(
-                            isPositive ? "text-green-500" : "text-red-500"
+                            isPositive ? "text-green-500" : "text-red-500",
                         )}
                     >
                         <p className="flex items-center gap-2">
@@ -55,7 +55,7 @@ const Categories = async () => {
             header: "Market Cap",
             cellClassName: "market-cap-cell",
             cell: (category) =>
-                `$${category.market_cap.toLocaleString(undefined, {
+                `₹${category.market_cap.toLocaleString(undefined, {
                     maximumFractionDigits: 0,
                 })}`,
         },
@@ -63,7 +63,7 @@ const Categories = async () => {
             header: "24h Volume",
             cellClassName: "volume-cell",
             cell: (category) =>
-                `$${category.volume_24h.toLocaleString(undefined, {
+                `₹${category.volume_24h.toLocaleString(undefined, {
                     maximumFractionDigits: 0,
                 })}`,
         },

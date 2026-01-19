@@ -13,7 +13,7 @@ const TrendingCoins = async () => {
         trendingCoins = await fetcher<{ coins: TrendingCoin[] }>(
             "/search/trending",
             undefined,
-            300
+            300,
         );
     } catch (error) {
         console.error("Error fetching trending coins:", error);
@@ -45,18 +45,18 @@ const TrendingCoins = async () => {
             cell: (coin) => {
                 const item = coin.item;
                 const isTrendingUp =
-                    item.data.price_change_percentage_24h.usd > 0;
+                    item.data.price_change_percentage_24h.inr > 0;
 
                 return (
                     <div
                         className={cn(
                             "price-change",
-                            isTrendingUp ? "text-green-500" : "text-red-500"
+                            isTrendingUp ? "text-green-500" : "text-red-500",
                         )}
                     >
                         <p className="flex items-center gap-2">
                             {formatPercentage(
-                                item.data.price_change_percentage_24h.usd
+                                item.data.price_change_percentage_24h.inr,
                             )}
                             {isTrendingUp ? (
                                 <TrendingUp width={16} height={16} />

@@ -14,7 +14,7 @@ const Page = async ({ params }: NextPageProps) => {
     });
 
     const coinOHLCData = await fetcher<OHLCData[]>(`/coins/${id}/ohlc`, {
-        vs_currency: "usd",
+        vs_currency: "inr",
         days: 1,
     });
 
@@ -29,7 +29,7 @@ const Page = async ({ params }: NextPageProps) => {
     const coinDetails = [
         {
             label: "Market Cap",
-            value: formatCurrency(coinData.market_data.market_cap.usd),
+            value: formatCurrency(coinData.market_data.market_cap.inr),
         },
         {
             label: "Market Cap Rank",
@@ -37,7 +37,7 @@ const Page = async ({ params }: NextPageProps) => {
         },
         {
             label: "Total Volume",
-            value: formatCurrency(coinData.market_data.total_volume.usd),
+            value: formatCurrency(coinData.market_data.total_volume.inr),
         },
         {
             label: "Website",
@@ -101,7 +101,7 @@ const Page = async ({ params }: NextPageProps) => {
                                         </p>
                                     )}
                                 </li>
-                            )
+                            ),
                         )}
                     </ul>
                 </div>

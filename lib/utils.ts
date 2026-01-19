@@ -9,8 +9,8 @@ export function cn(...inputs: ClassValue[]) {
 export function formatCurrency(
     value: number | null | undefined,
     digits = 2,
-    currency: "USD" | "INR" = "USD",
-    showSymbol = true
+    currency: "USD" | "INR" = "INR",
+    showSymbol = true,
 ): string {
     if (value == null || Number.isNaN(value)) {
         return showSymbol ? (currency === "INR" ? "₹0.00" : "$0.00") : "0.00";
@@ -31,7 +31,7 @@ export function formatCurrency(
             : {
                   minimumFractionDigits: digits,
                   maximumFractionDigits: digits,
-              }
+              },
     );
 }
 
@@ -85,14 +85,14 @@ export function convertOHLCData(data: OHLCData[]) {
         }))
         .filter(
             (item, index, arr) =>
-                index === 0 || item.time !== arr[index - 1].time
+                index === 0 || item.time !== arr[index - 1].time,
         );
 }
 
 export const ELLIPSIS = "ellipsis" as const;
 export const buildPageNumbers = (
     currentPage: number,
-    totalPages: number
+    totalPages: number,
 ): (number | typeof ELLIPSIS)[] => {
     const MAX_VISIBLE_PAGES = 5;
 
