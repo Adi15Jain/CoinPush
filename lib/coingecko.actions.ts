@@ -11,14 +11,14 @@ if (!API_KEY) throw new Error("Could not get api key");
 export async function fetcher<T>(
     endpoint: string,
     params?: QueryParams,
-    revalidate = 60
+    revalidate = 60,
 ): Promise<T> {
     const url = qs.stringifyUrl(
         {
             url: `${BASE_URL}/${endpoint}`,
             query: params,
         },
-        { skipEmptyString: true, skipNull: true }
+        { skipEmptyString: true, skipNull: true },
     );
 
     const response = await fetch(url, {
@@ -37,7 +37,7 @@ export async function fetcher<T>(
         throw new Error(
             `API Error: ${response.status}: ${
                 errorBody.error || response.statusText
-            } `
+            } `,
         );
     }
 
@@ -46,7 +46,7 @@ export async function fetcher<T>(
 
 export async function searchCoins(
     query: string,
-    limit = 10
+    limit = 10,
 ): Promise<SearchCoin[]> {
     if (!query.trim()) return [];
 
@@ -69,7 +69,7 @@ export async function searchCoins(
             ids,
             price_change_percentage: "24h",
         },
-        60
+        60,
     );
 
     return coins.map((coin) => {
@@ -89,7 +89,7 @@ export async function searchCoins(
 export async function getPools(
     id: string,
     network?: string | null,
-    contractAddress?: string | null
+    contractAddress?: string | null,
 ): Promise<PoolData> {
     const fallback: PoolData = {
         id: "",
@@ -101,7 +101,7 @@ export async function getPools(
     if (network && contractAddress) {
         try {
             const poolData = await fetcher<{ data: PoolData[] }>(
-                `/onchain/networks/${network}/tokens/${contractAddress}/pools`
+                `/onchain/networks/${network}/tokens/${contractAddress}/pools`,
             );
 
             return poolData.data?.[0] ?? fallback;
@@ -114,7 +114,7 @@ export async function getPools(
     try {
         const poolData = await fetcher<{ data: PoolData[] }>(
             "/onchain/search/pools",
-            { query: id }
+            { query: id },
         );
 
         return poolData.data?.[0] ?? fallback;
